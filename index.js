@@ -29,8 +29,8 @@ app.get("/", (req, res) => {
 app.get("/produtos", async (req, res) => {
     
     console.log('chamou')
-    const produtos = await collection.insertOne({ nome: "claudio", idade: 69 })
-    res.send(produtos)
+    const produtos = await collection.find().toArray()
+    res.send(produtos).end()
 })
 
 app.get("/fechar", (req, res) => {
