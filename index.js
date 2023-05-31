@@ -1,5 +1,5 @@
 const express = require('express'); //back end importa assim
-const { MongoClient } = require("mongodb")
+const { MongoClient, ServerApiVersion } = require("mongodb")
 
 const app = express();
 
