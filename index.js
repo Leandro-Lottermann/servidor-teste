@@ -11,15 +11,7 @@ const PORT = 8080;
 const uri = "mongodb+srv://leandrinho:cafezinho@nomequeeuquero.y5c3b8d.mongodb.net/?retryWrites=true&w=majority";
 
 
-const client = new MongoClient( uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-} ) //inicio a connection
 
-const collection = client.db("LojinhaWeb").collection("Produto")
 
 
 app.get("/", (req, res) => {
@@ -27,10 +19,19 @@ app.get("/", (req, res) => {
 })
 
 app.get("/produtos", async (req, res) => {
-    
+    const client = new MongoClient( uri, {
+    serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+    }
+    } ) //inicio a connection
+
+    const collection = client.db("LojinhaWeb").collection("Produto")
     console.log('chamou')
     const produtos = await collection.find().toArray()
     res.send(produtos).end()
+  
 })
 
 app.get("/fechar", (req, res) => {
